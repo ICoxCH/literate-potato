@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  generator:
+    image: n3integration/vegeta
+    environment:
+      - DURATION=30s
+      - TARGET=http://host.docker.internal/portal
+  pumba:
+    image: gaiaadm/pumba
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    command: "--interval=10s --random --log-level=info kill --signal=SIGKILL re2:^portal_web_*"
