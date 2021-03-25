@@ -27,6 +27,7 @@ services:
       - "traefik.http.routers.web.entrypoints=web"
     environment:
       - CMS_API=http://backend:1337
+      - MOCK_API_RESPONSES=false
   backend:
     build: ./vigilant-dollop
     restart: always
