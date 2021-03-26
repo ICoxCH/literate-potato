@@ -9,8 +9,6 @@ services:
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
-      - "--entrypoints.api.address=:1337"
-
     ports:
       - "80:80"
       - "8080:8080"
@@ -31,11 +29,11 @@ services:
   backend:
     build: ./vigilant-dollop
     restart: always
-    ports:
-      - "1337:1337"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.api.priority=99"
-      - "traefik.http.routers.api.entrypoints=api"
+      - "traefik.http.routers.api.rule=PathPrefix(`/api`)"
+      - "traefik.http.routers.api.middlewares=strip-pre"
+      - "traefik.http.routers.api.entrypoints=web"
     environment:
       - DATABASE_HOST=host.docker.internal
