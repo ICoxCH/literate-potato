@@ -26,6 +26,7 @@ services:
     environment:
       - CMS_API=http://backend:1337
       - MOCK_API_RESPONSES=false
+      - "PATH_PREFIX=/portal"
   backend:
     build: ./vigilant-dollop
     restart: always
