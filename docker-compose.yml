@@ -24,7 +24,7 @@ services:
       - "traefik.http.routers.web.middlewares=strip-pre"
       - "traefik.http.routers.web.entrypoints=web"
     environment:
-      - CMS_API=http://backend:1337
+      - CMS_API_URL=http://backend:1337
       - MOCK_API_RESPONSES=false
       - "PATH_PREFIX=/portal"
   backend:
